@@ -1,25 +1,26 @@
 import Head from 'next/head';
 
 interface CustomHeadProps {
-  title: string;
+  title?: string;
 }
 
 const CustomHead = ({ title }: CustomHeadProps) => {
+  const pageTitle = "Abhiram Anil | Data Scientist & AI Engineer";
   return (
     <Head>
-      <title>{title}</title>
+      <title>{pageTitle}</title>
       <meta
         name="description"
-        content="Nitin Ranganath is an avid full stack web developer building websites and applications you'd love to use"
+        content="Portfolio of Abhiram Anil - Expert in Data Science, AI, and Automation."
       />
       <meta
         name="keywords"
-        content="nitin ranganath, nitin, ranganath, web developer portfolio, nitin web developer, nitin developer, mern stack, nitin ranganath portfolio, vscode-portfolio"
+        content="Abhiram Anil, Abhiram, Data Scientist, AI Engineer, Portfolio, Data Science, AI, Automation, Machine Learning, n8n, SaaS, Python"
       />
-      <meta property="og:title" content="Nitin Ranganath's Portfolio" />
+      <meta property="og:title" content="Abhiram Anil's Portfolio" />
       <meta
         property="og:description"
-        content="A full-stack developer building websites that you'd like to use."
+        content="Portfolio of Abhiram Anil - Expert in Data Science, AI, and Automation."
       />
       <meta property="og:image" content="https://imgur.com/4zi5KkQ.png" />
       <meta property="og:url" content="https://vscode-portfolio.vercel.app" />
@@ -29,7 +30,3 @@ const CustomHead = ({ title }: CustomHeadProps) => {
 };
 
 export default CustomHead;
-
-CustomHead.defaultProps = {
-  title: 'Nitin Ranganath',
-};

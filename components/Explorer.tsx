@@ -27,9 +27,11 @@ const explorerItems = [
     icon: '/logos/js_icon.svg',
   },
   {
-    name: 'articles.json',
-    path: '/articles',
+    // --- CHANGED THIS SECTION ---
+    name: 'certifications.json',
+    path: '/certifications',
     icon: '/logos/json_icon.svg',
+    // ----------------------------
   },
   {
     name: 'github.md',

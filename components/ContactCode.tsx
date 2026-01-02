@@ -2,39 +2,30 @@ import styles from '@/styles/ContactCode.module.css';
 
 const contactItems = [
   {
-    social: 'website',
-    link: 'nitinranganath.com',
-    href: 'https://nitinranganath.com',
+    social: 'linkedin',
+    link: 'abhiram-anil-092946223',
+    href: 'https://www.linkedin.com/in/abhiram-anil-092946223/',
   },
   {
     social: 'email',
-    link: 'nitinranganath@gmail.com',
-    href: 'mailto:nitinranganath@gmail.com',
+    link: 'abhiramaanil@gmail.com',
+    href: 'mailto:abhiramaanil@gmail.com',
   },
   {
     social: 'github',
-    link: 'itsnitinr',
-    href: 'https://github.com/itsnitinr',
+    link: 'Abteeeen',
+    
+    href: 'https://github.com/Abteeeen',
   },
   {
-    social: 'linkedin',
-    link: 'nitinranganath',
-    href: 'https://www.linkedin.com/in/nitinranganath/',
+    social: 'location',
+    link: 'Coimbatore, Kerala',
+    href: 'https://www.google.com/maps/place/Coimbatore,+Kerala',
   },
   {
-    social: 'twitter',
-    link: 'iamnitinr',
-    href: 'https://www.twitter.com/iamnitinr',
-  },
-  {
-    social: 'telegram',
-    link: 'iamnitinr',
-    href: 'https://t.me/iamnitinr',
-  },
-  {
-    social: 'peerlist',
-    link: 'nitinranganath',
-    href: 'https://peerlist.io/nitinranganath',
+    social: 'current_job',
+    link: 'Codevantage',
+    href: 'https://www.codevantage.in/',
   },
 ];
 

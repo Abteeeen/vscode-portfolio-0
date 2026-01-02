@@ -1,5 +1,4 @@
 import Tab from '@/components/Tab';
-
 import styles from '@/styles/Tabsbar.module.css';
 
 const Tabsbar = () => {
@@ -11,8 +10,8 @@ const Tabsbar = () => {
       <Tab icon="/logos/js_icon.svg" filename="projects.js" path="/projects" />
       <Tab
         icon="/logos/json_icon.svg"
-        filename="articles.json"
-        path="/articles"
+        filename="certifications.json"
+        path="/certifications"
       />
       <Tab
         icon="/logos/markdown_icon.svg"

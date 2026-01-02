@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
       { hostname: 'avatars.githubusercontent.com', protocol: 'https' },
       { hostname: 'imgur.com', protocol: 'https' },
       { hostname: 'media2.dev.to', protocol: 'https' },
+      { hostname: 'images.unsplash.com', protocol: 'https' }, // <--- Added this for your images
     ],
   },
 };

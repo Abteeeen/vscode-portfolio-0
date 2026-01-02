@@ -13,25 +13,26 @@ import {
 import styles from '@/styles/Sidebar.module.css';
 
 const sidebarTopItems = [
-  { Icon: VscFiles, path: '/' },
-  { Icon: VscGithubAlt, path: '/github' },
-  { Icon: VscCode, path: '/projects' },
-  { Icon: VscEdit, path: '/articles' },
-  { Icon: VscMail, path: '/contact' },
+  { Icon: VscFiles, path: '/', label: 'home.tsx' },
+  { Icon: VscGithubAlt, path: '/github', label: 'github.md' },
+  { Icon: VscCode, path: '/projects', label: 'projects.js' },
+  { Icon: VscEdit, path: '/certifications', label: 'certifications.json' }, // renamed from articles.json to certifications.json
+  { Icon: VscMail, path: '/contact', label: 'contact.css' },
 ];
 
 const sidebarBottomItems = [
-  { Icon: VscAccount, path: '/about' },
-  { Icon: VscSettings, path: '/settings' },
+  { Icon: VscAccount, path: '/about', label: 'about.html' },
+  { Icon: VscSettings, path: '/settings', label: 'settings' },
 ];
 
 const Sidebar = () => {
   const router = useRouter();
+  
 
   return (
     <aside className={styles.sidebar}>
       <div className={styles.sidebarTop}>
-        {sidebarTopItems.map(({ Icon, path }) => (
+        {sidebarTopItems.map(({ Icon, path, label }) => (
           <Link href={path} key={path}>
             <div
               className={`${styles.iconContainer} ${
@@ -47,12 +48,13 @@ const Sidebar = () => {
                 }
                 className={styles.icon}
               />
+              <span className={styles.sidebarLabel}>{label}</span>
             </div>
           </Link>
         ))}
       </div>
       <div className={styles.sidebarBottom}>
-        {sidebarBottomItems.map(({ Icon, path }) => (
+        {sidebarBottomItems.map(({ Icon, path, label }) => (
           <div className={styles.iconContainer} key={path}>
             <Link href={path}>
               <Icon
@@ -63,6 +65,7 @@ const Sidebar = () => {
                 }
                 className={styles.icon}
               />
+              <span className={styles.sidebarLabel}>{label}</span>
             </Link>
           </div>
         ))}

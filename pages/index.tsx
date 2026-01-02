@@ -4,6 +4,42 @@ import { VscArrowRight } from 'react-icons/vsc';
 
 import styles from '@/styles/HomePage.module.css';
 
+// Lightweight Typewriter Effect
+function Typewriter({ words, speed = 55, pause = 1000, className = '' }: { words: string[]; speed?: number; pause?: number; className?: string }) {
+  const [displayText, setDisplayText] = useState('');
+  const [wordIndex, setWordIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    const currentWord = words[wordIndex];
+
+    if (!isDeleting && charIndex <= currentWord.length) {
+      setDisplayText(currentWord.slice(0, charIndex));
+      timeout = setTimeout(() => setCharIndex((c) => c + 1), speed);
+    } else if (isDeleting && charIndex >= 0) {
+      setDisplayText(currentWord.slice(0, charIndex));
+      timeout = setTimeout(() => setCharIndex((c) => c - 1), speed / 2);
+    } else if (!isDeleting && charIndex > currentWord.length) {
+      timeout = setTimeout(() => setIsDeleting(true), pause);
+    } else if (isDeleting && charIndex < 0) {
+      setIsDeleting(false);
+      setWordIndex((idx) => (idx + 1) % words.length);
+      setCharIndex(0);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [charIndex, isDeleting, pause, speed, wordIndex, words]);
+
+  return (
+    <span className={className}>
+      {displayText}
+      <span className={styles.typewriterCursor}>|</span>
+    </span>
+  );
+}
+
 export default function HomePage() {
   const [activeLineIndex, setActiveLineIndex] = useState(0);
 
@@ -14,9 +50,9 @@ export default function HomePage() {
       type: 'variable',
     },
     { code: '  const developerInfo = {', type: 'variable' },
-    { code: "    name: 'Nitin Ranganath',", type: 'array-item' },
-    { code: "    role: 'Full Stack Developer',", type: 'array-item' },
-    { code: "    bio: 'Building modern web experiences'", type: 'array-item' },
+    { code: "    name: 'Abhiram Anil',", type: 'array-item' },
+    { code: "    role: 'Data Scientist',", type: 'array-item' },
+    { code: "    bio: 'Delivering AI, automation and data-driven solutions'", type: 'array-item' },
     { code: '  };', type: 'array-end' },
     { code: '', type: 'blank' },
     { code: '  useEffect(() => {', type: 'nested-function' },
@@ -33,7 +69,7 @@ export default function HomePage() {
     { code: '      <p>{developerInfo.role}</p>', type: 'object-method' },
     { code: '      <div className="cta">', type: 'object-method' },
     {
-      code: '        <Link href="/projects">View Projects</Link>',
+      code: '        <a href="#contact" className="cta-btn">Contact Me</a>',
       type: 'object-method',
     },
     { code: '      </div>', type: 'object-method' },
@@ -51,6 +87,17 @@ export default function HomePage() {
 
     return () => clearInterval(interval);
   }, [codeLines.length]);
+
+  // Handler to scroll to footer/contact section
+  const handleContactClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const contactSection = document.getElementById('contact');
+    if(contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.location.href = '/contact';
+    }
+  };
 
   return (
     <div className={styles.heroLayout}>
@@ -91,20 +138,35 @@ export default function HomePage() {
 
         <div className={styles.infoSection}>
           <h1 className={styles.developerName}>
-            Nitin <span className={styles.accentText}>Ranganath</span>
+            Abhiram <span className={styles.accentText}>Anil</span>
           </h1>
 
-          <div className={styles.developerRole}>Full Stack Web Developer</div>
+          <div className={styles.developerRole}>
+            <Typewriter
+              words={[
+                'Data Scientist',
+                'HR Analyst',
+                'Automation Specialist',
+                'Python Developer'
+              ]}
+              speed={55}
+              pause={850}
+              className={styles.typewriter}
+            />
+          </div>
 
           <p className={styles.bio}>
-            I build elegant, responsive web applications with modern
-            technologies. Focused on clean code and intuitive user experiences.
+            Delivering AI, automation and data-driven solutions. Focused on clean code and tailored analytics for modern business needs.
           </p>
 
           <div className={styles.actionLinks}>
-            <Link href="/projects" className={styles.primaryLink}>
-              View Projects <VscArrowRight />
-            </Link>
+            <a
+              href="#contact"
+              className={styles.primaryLink}
+              onClick={handleContactClick}
+            >
+              Contact Me <VscArrowRight />
+            </a>
           </div>
         </div>
       </div>

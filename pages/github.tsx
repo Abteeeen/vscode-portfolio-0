@@ -1,18 +1,19 @@
 import Image from 'next/image';
 import GitHubCalendar from 'react-github-calendar';
 import { VscRepo, VscPerson } from 'react-icons/vsc';
-
 import RepoCard from '@/components/RepoCard';
-import { Repo, User } from '@/types';
-
 import styles from '@/styles/GithubPage.module.css';
 
-interface GithubPageProps {
-  repos: Repo[];
-  user: User;
-}
+const GithubPage = ({ repos, user }) => {
+  // Fallback UI if data fails to load
+  if (!user || !repos) {
+    return (
+        <div className={styles.layout}>
+            <h1 className={styles.pageTitle}>GitHub Profile Loading...</h1>
+        </div>
+    );
+  }
 
-const GithubPage = ({ repos, user }: GithubPageProps) => {
   return (
     <div className={styles.layout}>
       <div className={styles.pageHeading}>
@@ -60,8 +61,10 @@ const GithubPage = ({ repos, user }: GithubPageProps) => {
           ))}
         </div>
         <div className={styles.contributions}>
+          <h3 className={styles.sectionTitle}>Contribution Graph</h3>
+          {/* Abteeeen */}
           <GitHubCalendar
-            username={process.env.NEXT_PUBLIC_GITHUB_USERNAME!}
+            username="Abteeeen"
             hideColorLegend
             hideMonthLabels
             colorScheme="dark"
@@ -71,6 +74,7 @@ const GithubPage = ({ repos, user }: GithubPageProps) => {
             }}
             style={{
               width: '100%',
+              marginTop: '1rem'
             }}
           />
         </div>
@@ -80,15 +84,22 @@ const GithubPage = ({ repos, user }: GithubPageProps) => {
 };
 
 export async function getStaticProps() {
-  const userRes = await fetch(
-    `https://api.github.com/users/${process.env.NEXT_PUBLIC_GITHUB_USERNAME}`
-  );
+  // 1. FETCH USER INFO FOR Abteeeen
+  const userRes = await fetch(`https://api.github.com/users/Abteeeen`);
   const user = await userRes.json();
 
+  // 2. FETCH REPOS FOR Abteeeen
   const repoRes = await fetch(
-    `https://api.github.com/users/${process.env.NEXT_PUBLIC_GITHUB_USERNAME}/repos?sort=pushed&per_page=6`
+    `https://api.github.com/users/Abteeeen/repos?sort=pushed&per_page=6`
   );
-  const repos = await repoRes.json();
+  let repos = await repoRes.json();
+
+  // Sort by stars to show your best work first
+  if (Array.isArray(repos)) {
+      repos = repos.sort((a, b) => b.stargazers_count - a.stargazers_count).slice(0, 6);
+  } else {
+      repos = [];
+  }
 
   return {
     props: { title: 'GitHub', repos, user },
