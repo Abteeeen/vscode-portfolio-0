@@ -8,7 +8,7 @@ A Visual Studio Code themed developer portfolio website built with Next.js and d
 
 - [ ] Themes and customizations
   - [x] GitHub Dark (default)
-  - [ ] One Dark Pro
+  - [x] One Dark Pro
   - [x] Dracula
   - [x] Ayu
   - [x] Nord
