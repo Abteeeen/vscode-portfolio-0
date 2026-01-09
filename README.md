@@ -4,14 +4,14 @@ A Visual Studio Code themed developer portfolio website built with Next.js and d
 
 
 
-## Features Roadmap
+## Features Roadmaps
 
 - [ ] Themes and customizations
   - [x] GitHub Dark (default)
   - [x] One Dark Pro
   - [x] Dracula
   - [x] Ayu
-  - [x] Nord
+  - [x] Nords
 - [ ] Interactive custom terminal
 
 For other features and themes suggestions, please open an issue.
@@ -20,7 +20,7 @@ For other features and themes suggestions, please open an issue.
 
 For fetching your articles from dev.to, create an `.env.local` file inside the project directory. Check the `.env.local.example` file for more information.
 
-## Running Development Server
+## Running Development Servers
 
 ```bash
 npm run dev
